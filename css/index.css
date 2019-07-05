@@ -1,0 +1,90 @@
+html, body{
+	width: 100%;
+	height: 100%;
+}
+.main-container{
+	width:100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.main-container > section{
+	width:100%;
+	height: 100%;
+	display: flex;
+}
+.profile-section{
+	flex: 1;
+	padding-top: 50px;
+}
+.profile-section .list-group-item{
+	cursor: pointer;
+}
+.profile-section .list-group-item:hover{
+	background: #eee;
+}
+.posts-section{
+	flex: 1.5;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+	padding-top: 50px;
+	overflow-y: scroll;
+}
+.posts-section::-webkit-scrollbar {
+  width: 0px;
+}
+.posts-section .card{
+	margin-bottom: 20px;
+}
+.filters-section{
+	flex-basis: 270px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding-top: 50px;
+	align-items: flex-end;
+}
+.filters-section h4{
+	margin-bottom: 0;
+}
+.filters-section .list-group{
+	width: 270px;
+}
+.filters-section .list-group-item{
+	cursor: pointer;
+}
+.filters-section .list-group-item-filter:hover{
+	background: #eee;
+}
+.filters-section hr{
+	background: #eee;
+	width: 250px;
+	margin-left:0;
+}
+.card-header{
+	background: none;
+}
+.new-post-container{
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.new-post-container .card{
+	border: 2px solid #888888;
+}
+.new-post-container #discard-post{
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	font-size: 25px;
+	color: orangered;
+	cursor: pointer;
+}
+.new-post-container #title{
+	width: 1000px;
+}
