@@ -15,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+    <script src="jquery.timeago.js" type="text/javascript"></script>
     <title>MySite - Untitled</title>
   </head>
   <body>
@@ -85,78 +85,32 @@
             <!-- Posts Section -->
             
             <div class="posts-section">
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">Pikachu</div>
-                    <img src="assets/images/pikachu.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div>
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">Minion</div>
-                    <img src="assets/images/minion.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> 
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">Kuroko</div>
-                    <img src="assets/images/kuroko.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> 
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">John Wick</div>
-                    <img src="assets/images/john-wick.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> 
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">Uncharted 4</div>
-                    <img src="assets/images/uncharted-4.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> 
-                <div class="card" style="width: 35rem;">
-                    <div class="card-header">Need for Speed</div>
-                    <img src="assets/images/nfs.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        2 days ago
-                    </div>
-                </div> 
+                <?php 
+                    include_once "config/conn.php";
+                    $sql = "SELECT * FROM poststest2 ORDER BY uploadTime DESC ";
+                    $result = mysqli_query($conn, $sql);
+                    if(mysqli_num_rows($result) > 0){
+                        while($row = mysqli_fetch_assoc($result)) {
+                            echo "
+                            <div class='card' style='width: 35rem;'>
+                                <div class='card-header'>".$row['title']."</div>
+
+                                <img src='uploads/".$row['filename']."' class='card-img-top'>
+                                <div class='card-body'>
+                                    <p class='card-text'>".$row['descrptn']."</p>
+                                    <a href= class='card-link'>".$row['link']."</a>
+                                </div>
+                                <div class='card-footer text-muted'>
+                                    ".get_time_ago( $row['uploadTime'])."
+                                </div>
+                            </div>";
+                        }
+                    }else{
+                        echo '<h2>No Posts Uploaded</h2>';
+                    }
+                ?>
+                
+                
             </div>
 
             <div style="width: 50px"></div>
@@ -192,15 +146,23 @@
         <div class=" card mx-auto my-5">
             <div class="ml-auto mr-2 mt-2" id="discard-post"><i class="fas fa-times"></i></div>
           <div class="card-body">
-            <form>
+            <form method="POST" action="config/upload.php" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="title">Title for the Post</label>
-                <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title">
+                <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Enter Title" required>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div class="form-group">
+                <label for="descrptn">Description for the Post</label>
+                <input type="text" class="form-control" name="descrptn" id="descrptn" aria-describedby="emailHelp" placeholder="enter Description" required>
+              </div>
+              <div class="form-group">
+                <label for="link">Link for the Post</label>
+                <input type="text" class="form-control" name="link" id="link" aria-describedby="emailHelp" placeholder="enter link">
+              </div>
+              <div class="form-group">
                 <label for="file">Upload Image</label>
-                <input type="file" class="form-control-file" id="file">
+                <input type="file" name="file" class="form-control-file" id="file">
               </div>
               <p>Add Tags</p>
               <div class="form-group form-check">
@@ -215,7 +177,7 @@
                 <input type="checkbox" class="form-check-input" id="tag3">
                 <label class="form-check-label" for="tag3">Events</label>
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" name="upload" class="btn btn-primary">Submit</button>
             </form>
           </div>
         </div>
@@ -236,3 +198,29 @@
 
   </body>
 </html>
+<?php 
+    function get_time_ago( $time )
+    {
+        $time_difference = time() - $time;
+
+        if( $time_difference < 1 ) { return 'less than 1 second ago'; }
+        $condition = array( 12 * 30 * 24 * 60 * 60 =>  'year',
+                    30 * 24 * 60 * 60       =>  'month',
+                    24 * 60 * 60            =>  'day',
+                    60 * 60                 =>  'hour',
+                    60                      =>  'minute',
+                    1                       =>  'second'
+        );
+
+        foreach( $condition as $secs => $str )
+        {
+            $d = $time_difference / $secs;
+
+            if( $d >= 1 )
+            {
+                $t = round( $d );
+                return 'about ' . $t . ' ' . $str . ( $t > 1 ? 's' : '' ) . ' ago';
+            }
+        }
+    }
+?>
