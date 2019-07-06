@@ -2,7 +2,6 @@
 	if(isset($_POST['upload'])){
 		$title = $_POST['title']; // Title of the post
 		$link = $_POST['link']; // Link related to the post
-		// $descrptn = $_POST['descrptn'];
 		$descrptn = str_replace("'", "''", $_POST['descrptn']);
 		$file = $_FILES['file'];
 		$file_name = $file['name'];
