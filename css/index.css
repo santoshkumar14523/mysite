@@ -34,7 +34,7 @@ html, body{
 	overflow-y: scroll;
 }
 .posts-section::-webkit-scrollbar {
-  width: 10px;
+  width: 0px;
 }
 .posts-section .card{
 	margin-bottom: 20px;
@@ -46,6 +46,11 @@ html, body{
 	flex-direction: column;
 	padding-top: 50px;
 	align-items: flex-end;
+	overflow-y: scroll;
+	padding-bottom: 100px;
+}
+.filters-section::-webkit-scrollbar {
+	width: 0px;
 }
 .filters-section h4{
 	margin-bottom: 0;
@@ -86,5 +91,33 @@ html, body{
 	cursor: pointer;
 }
 .new-post-container #title{
-	width: 1000px;
+	margin-right: 100px;
+}
+.list-group-item-title{
+	display: block;
+	position: relative;
+}
+.clear-filters::after{
+	content: '\f00d';
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+}
+.filters-section .dropdown-toggle::after{
+	content: '';
+	position: absolute;
+	right: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.filters-section .form-check{
+	margin-top: 8px;
+}
+.select-filters select{
+	width: 250px;
+	margin-right: 10px;
+	float: left;
 }
