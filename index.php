@@ -12,10 +12,9 @@
     <!-- Optional CSS -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="jquery.timeago.js" type="text/javascript"></script>
     <title>MySite - Untitled</title>
   </head>
   <body>
@@ -61,10 +60,10 @@
                 <h4 class="mr-auto">Quick Filters</h4>
                 <hr>
                 <ul class="list-group mb-3">
-                    <li class="list-group-item list-group-item-success">Filters</li>
-                    <li class="list-group-item list-group-item-filter">Department</li>
-                    <li class="list-group-item list-group-item-filter">Socities</li>
-                    <li class="list-group-item list-group-item-filter">Events</li>
+                    <li class="list-group-item list-group-item-success list-group-item-filter-title">Filters</li>
+                    <li class="list-group-item list-group-item-filter" value="dep">Department</li>
+                    <li class="list-group-item list-group-item-filter" value="soc">Socities</li>
+                    <li class="list-group-item list-group-item-filter" value="evnt">Events</li>
                 </ul>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-warning">Upload Time</li>
@@ -85,32 +84,7 @@
             <!-- Posts Section -->
             
             <div class="posts-section">
-                <?php 
-                    include_once "config/conn.php";
-                    $sql = "SELECT * FROM poststest2 ORDER BY uploadTime DESC ";
-                    $result = mysqli_query($conn, $sql);
-                    if(mysqli_num_rows($result) > 0){
-                        while($row = mysqli_fetch_assoc($result)) {
-                            echo "
-                            <div class='card' style='width: 35rem;'>
-                                <div class='card-header'>".$row['title']."</div>
 
-                                <img src='uploads/".$row['filename']."' class='card-img-top'>
-                                <div class='card-body'>
-                                    <p class='card-text'>".$row['descrptn']."</p>
-                                    <a href= class='card-link'>".$row['link']."</a>
-                                </div>
-                                <div class='card-footer text-muted'>
-                                    ".get_time_ago( $row['uploadTime'])."
-                                </div>
-                            </div>";
-                        }
-                    }else{
-                        echo '<h2>No Posts Uploaded</h2>';
-                    }
-                ?>
-                
-                
             </div>
 
             <div style="width: 50px"></div>
@@ -133,7 +107,8 @@
                   <li class="list-group-item"><i class="far fa-calendar-check mr-2"></i>UpComing Events</li>
                   <li class="list-group-item"><i class="fas fa-link mr-2"></i>Website Link</li>
                 </ul>
-                <li class="list-group-item mt-3" style="width: 300px">Posts Uploaded Today<span class="badge badge-pill badge-secondary ml-3">2</span></li>
+                <li class="list-group-item mt-3 posts-uploaded-today" style="width: 300px">Posts Uploaded Today<span class="badge badge-pill badge-secondary ml-3">2</span></li>
+                <div class="ajax-data"></div>
             </div>
 
             <div style="width:50px"></div>
@@ -165,16 +140,22 @@
                 <input type="file" name="file" class="form-control-file" id="file">
               </div>
               <p>Add Tags</p>
+              <!-- <select name="depfilters" class="custom-select">
+                <option selected>Open this select menu</option>
+                <option value="dep1">One</option>
+                <option value="dep2">Two</option>
+                <option value="dep3">Three</option>
+              </select> -->
               <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="tag1">
+                <input type="checkbox" class="form-check-input" name='filters' value='dep' id="tag1">
                 <label class="form-check-label" for="tag1">Department</label>
               </div>
               <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="tag2">
+                <input type="checkbox" class="form-check-input" name='filters' value='soc' id="tag2">
                 <label class="form-check-label" for="tag2">Society</label>
               </div>
               <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="tag3">
+                <input type="checkbox" class="form-check-input" name='filters' value='evnt' id="tag3">
                 <label class="form-check-label" for="tag3">Events</label>
               </div>
               <button type="submit" name="upload" class="btn btn-primary">Submit</button>
@@ -186,6 +167,7 @@
     <!-- Optional JavaScript -->
 
     <script type="text/javascript">
+        $('.posts-section').load("config/allposts.php");
         $('#upload-post').on('click', function(){
             $('.main-container').css('opacity' , 0.05);
             $('.new-post-container').show();
@@ -194,33 +176,25 @@
             $('.new-post-container').hide();
             $('.main-container').css('opacity', 1);
         })
+        $('.list-group-item-filter').on('click', function(){
+            $('.list-group-item-filter-title').html('Clear Filters');
+            var value = $(this).attr('value');
+            $.ajax({
+                type: "POST",
+                url: "config/posts.php",
+                data: {
+                    data: value
+                },
+                success: function(data){
+                    $(".posts-section").html(data);
+                }
+            })
+        })
+        $('.list-group-item-filter-title').on('click', function(){
+            $('.posts-section').load("config/allposts.php");
+            $(this).html('Filters');
+        })
     </script>
 
   </body>
 </html>
-<?php 
-    function get_time_ago( $time )
-    {
-        $time_difference = time() - $time;
-
-        if( $time_difference < 1 ) { return 'less than 1 second ago'; }
-        $condition = array( 12 * 30 * 24 * 60 * 60 =>  'year',
-                    30 * 24 * 60 * 60       =>  'month',
-                    24 * 60 * 60            =>  'day',
-                    60 * 60                 =>  'hour',
-                    60                      =>  'minute',
-                    1                       =>  'second'
-        );
-
-        foreach( $condition as $secs => $str )
-        {
-            $d = $time_difference / $secs;
-
-            if( $d >= 1 )
-            {
-                $t = round( $d );
-                return 'about ' . $t . ' ' . $str . ( $t > 1 ? 's' : '' ) . ' ago';
-            }
-        }
-    }
-?>

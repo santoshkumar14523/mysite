@@ -32,7 +32,6 @@ html, body{
 	align-content: center;
 	padding: 50px 10px 0 10px;
 	overflow-y: scroll;
-	background: salmon;
 }
 .posts-section::-webkit-scrollbar {
   width: 10px;

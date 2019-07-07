@@ -3,6 +3,7 @@
 		$title = $_POST['title']; // Title of the post
 		$link = $_POST['link']; // Link related to the post
 		$descrptn = str_replace("'", "''", $_POST['descrptn']);
+		$filter = $_POST['filters'];
 		$file = $_FILES['file'];
 		$file_name = $file['name'];
 		$file_size = $file['size'];
@@ -16,11 +17,12 @@
 		if(in_array($file_ext, $allowed_ext)){
 			if($file_error === 0){
 				if($file_size < 5000000){
+					print_r($filter);
 					$file_new_name = uniqid('', true).'.'.$file_ext;
 					$file_new_destination = '../uploads/'.$file_new_name;
 
 					include_once "conn.php";
-					$sql = "INSERT INTO poststest2 (title, filename, descrptn, link, uploadTime) VALUES ('$title', '$file_new_name', '$descrptn', '$link', '$file_time_stamp')";
+					$sql = "INSERT INTO poststest5 (title, filename, descrptn, link, uploadTime, filter) VALUES ('$title', '$file_new_name', '$descrptn', '$link', '$file_time_stamp', '$filter')";
 					echo $sql;
 					if(mysqli_query($conn, $sql)){
 						echo 'your query is updated';
