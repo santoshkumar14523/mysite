@@ -59,19 +59,7 @@
             <div class="filters-section">
                 <h4 class="mr-auto">Quick Filters</h4>
                 <hr>
-                <!-- <ul class="list-group my-3">
-                    <li class="list-group-item list-group-item-success list-group-item-filter-title">Filters</li>
-                    <li class="list-group-item list-group-item-filter" value="dep">Department</li>
-                    <li class="list-group-item list-group-item-filter" value="soc">Socities</li>
-                    <li class="list-group-item list-group-item-filter" value="evnt">Events</li>
-                </ul> -->
-                    <!-- <ul class="list-group">
-                        <li class="list-group-item list-group-item-warning">Upload Time</li>
-                        <li class="list-group-item list-group-item-filter">Last Hour</li>
-                        <li class="list-group-item list-group-item-filter">This Day</li>
-                        <li class="list-group-item list-group-item-filter">This Week</li>
-                        <li class="list-group-item list-group-item-filter">This Month</li>
-                    </ul> -->
+                
                 <ul class="list-group mb-3">
                     <li class="list-group-item list-group-item-success">Filters</li>
                     <li class="list-group-item dropdown-toggle" href="#depfilters" data-toggle="collapse">Department
@@ -79,19 +67,19 @@
                     <ul class="collapse list-unstyled list-group" id="depfilters">
                         <li class="list-group-item">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                              <input class="form-check-input" type="checkbox" name="filters" value="dep1" id="defaultCheck1">
                               <label class="form-check-label" for="defaultCheck1">
                                 ECE
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
+                              <input class="form-check-input" type="checkbox" name="filters" value="dep2" id="defaultCheck2">
                               <label class="form-check-label" for="defaultCheck2">
                                 CSE
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
+                              <input class="form-check-input" type="checkbox" name="depfilters" value="dep3" id="defaultCheck3">
                               <label class="form-check-label" for="defaultCheck3">
                                 Arch.
                               </label>
@@ -103,20 +91,20 @@
                     <ul class="collapse list-unstyled list-group" id="socfilters">
                         <li class="list-group-item">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
+                              <input class="form-check-input" type="checkbox" value="soc1" name="socfilters" id="soc1">
+                              <label class="form-check-label" for="soc1">
                                 TDS
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                              <label class="form-check-label" for="defaultCheck2">
+                              <input class="form-check-input" type="checkbox" value="soc2" name="socfilters" id="soc2">
+                              <label class="form-check-label" for="soc2">
                                 TCA
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                              <label class="form-check-label" for="defaultCheck3">
+                              <input class="form-check-input" type="checkbox" value="soc3" name="socfilters" id="soc3">
+                              <label class="form-check-label" for="soc3">
                                 KOSS
                               </label>
                             </div>
@@ -127,20 +115,20 @@
                     <ul class="collapse list-unstyled list-group" id="evntfilters">
                         <li class="list-group-item">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
+                              <input class="form-check-input" type="checkbox" value="evnt1" id="evnt1">
+                              <label class="form-check-label" for="evnt1">
                                 Fests
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                              <label class="form-check-label" for="defaultCheck2">
+                              <input class="form-check-input" type="checkbox" value="evnt2" id="evnt2">
+                              <label class="form-check-label" for="evnt2">
                                 Guest Lectures
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                              <label class="form-check-label" for="defaultCheck3">
+                              <input class="form-check-input" type="checkbox" value="evnt3" id="evnt3">
+                              <label class="form-check-label" for="evnt3">
                                 Tournaments
                               </label>
                             </div>
@@ -151,25 +139,28 @@
                     <ul class="collapse list-unstyled list-group" id="uploadTimeFilters">
                         <li class="list-group-item">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                              <label class="form-check-label" for="defaultCheck1">
+                              <input class="form-check-input" type="checkbox" value="uptime1" id="uptime1">
+                              <label class="form-check-label" for="uptime1">
                                 Last Hour
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                              <label class="form-check-label" for="defaultCheck2">
+                              <input class="form-check-input" type="checkbox" value="uptime2" id="uptime2">
+                              <label class="form-check-label" for="uptime2">
                                 This Day
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                              <label class="form-check-label" for="defaultCheck3">
+                              <input class="form-check-input" type="checkbox" value="uptime3" id="uptime3">
+                              <label class="form-check-label" for="uptime3">
                                 This Week
                               </label>
                             </div>
                         </li>
                     </ul>
+                </ul>
+                <ul class="list-group mb-3 clear-filters-ul">
+                  <li class="list-group-item list-group-item-danger">Clear All Filters</li>
                 </ul>
                 <ul class="list-group">
                   <li class="list-group-item list-group-item-filter">Total Posts posted today<span class="badge badge-pill badge-secondary ml-2">25</span></li>
@@ -208,7 +199,6 @@
                   <li class="list-group-item"><i class="fas fa-link mr-2"></i>Website Link</li>
                 </ul>
                 <li class="list-group-item mt-3 posts-uploaded-today" style="width: 300px">Posts Uploaded Today<span class="badge badge-pill badge-secondary ml-3">2</span></li>
-                <div class="ajax-data"></div>
             </div>
 
             <div style="width:50px"></div>
@@ -241,37 +231,24 @@
               <p>Add Tags</p>
               <div class="select-filters form-group">
                 <select name="depfilters" class="custom-select">
-                    <option selected>Department</option>
-                    <option value="dep1">One</option>
-                    <option value="dep2">Two</option>
-                    <option value="dep3">Three</option>
+                    <option value="00" selected>Department</option>
+                    <option value="dep1">ECE</option>
+                    <option value="dep2">CSE</option>
+                    <option value="dep3">Arch.</option>
                 </select>
-                <select name="depfilters" class="custom-select">
-                    <option selected>Society</option>
-                    <option value="dep1">One</option>
-                    <option value="dep2">Two</option>
-                    <option value="dep3">Three</option>
+                <select name="socfilters" class="custom-select">
+                    <option value="00" selected>Society</option>
+                    <option value="soc1">TDS</option>
+                    <option value="soc2">TCA</option>
+                    <option value="soc3">KOSS</option>
                 </select>
-                <select name="depfilters" class="custom-select">
-                    <option selected>Events</option>
-                    <option value="dep1">One</option>
-                    <option value="dep2">Two</option>
-                    <option value="dep3">Three</option>
+                <select name="evntfilters" class="custom-select">
+                    <option value="00" selected>Events</option>
+                    <option value="evnt1">One</option>
+                    <option value="evnt2">Two</option>
+                    <option value="evnt3">Three</option>
                 </select>
               </div>
-
-              <!-- div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name='filters' value='dep' id="tag1">
-                <label class="form-check-label" for="tag1">Department</label>
-              </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name='filters' value='soc' id="tag2">
-                <label class="form-check-label" for="tag2">Society</label>
-              </div>
-              <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" name='filters' value='evnt' id="tag3">
-                <label class="form-check-label" for="tag3">Events</label>
-              </div> -->
               <button type="submit" name="upload" class="btn btn-primary">Upload Post</button>
               <button class="btn btn-light">Discard Post</button>
             </form>
@@ -282,6 +259,9 @@
     <!-- Optional JavaScript -->
 
     <script type="text/javascript">
+        var depFilterArray = [];
+        var socFilterArray = [];
+        var evntFilterArray = [];
         $('.posts-section').load("config/allposts.php");
         $('#upload-post').on('click', function(){
             $('.main-container').css('opacity' , 0.05);
@@ -291,30 +271,57 @@
             $('.new-post-container').hide();
             $('.main-container').css('opacity', 1);
         })
-        $('.list-group-item-filter').on('click', function(){
-            $('.list-group-item-filter-title').html('Clear Filters');
-            $(".list-group-item-filter-title").removeClass('list-group-item-success');
-            $(".list-group-item-filter-title").addClass('list-group-item-warning');
-            $(".list-group-item-filter-title").addClass("clear-filters");
+        $('.form-check-input').click(function () {
             var value = $(this).attr('value');
+            var parent = $(this).closest("ul").attr('id');
+            if(parent == 'depfilters'){
+                if($(this).prop('checked') == true){
+                    depFilterArray.push(value);
+                }else{
+                    depFilterArray = $.grep(depFilterArray, function(item){
+                        return item != value;
+                    })
+                }
+            }else if(parent == 'socfilters'){
+                if($(this).prop('checked') == true){
+                    socFilterArray.push(value);
+                }else{
+                    socFilterArray = $.grep(socFilterArray, function(item){
+                        return item != value;
+                    })
+                }
+            }else if(parent == 'evntfilters'){
+                if($(this).prop('checked') == true){
+                    evntFilterArray.push(value);
+                }else{
+                    evntFilterArray = $.grep(evntFilterArray, function(item){
+                        return item != value;
+                    })
+                }
+            }
             $.ajax({
                 type: "POST",
                 url: "config/posts.php",
                 data: {
-                    data: value
+                    depFilterArray : depFilterArray,
+                    socFilterArray : socFilterArray,
+                    evntFilterArray : evntFilterArray
                 },
                 success: function(data){
-                    $(".posts-section").html(data);
+                    $('.posts-section').html(data);
                 }
             })
-        })
-        $('.list-group-item-filter-title').on('click', function(){
-            $('.posts-section').load("config/allposts.php");
-            $(this).html('Filters');
-            $(".list-group-item-filter-title").removeClass('list-group-item-warning');
-            $(".list-group-item-filter-title").removeClass('clear-filters');
-            $(".list-group-item-filter-title").addClass('list-group-item-success');
 
+            if(depFilterArray.length === 0 && socFilterArray.length === 0 && evntFilterArray.length === 0){
+                $('.clear-filters-ul').hide();
+            }else{
+                $('.clear-filters-ul').show();
+            }
+        })
+        $('.clear-filters-ul').on('click', function(){
+            $('.form-check-input').prop('checked', false);
+            $('.posts-section').load('config/allposts.php');
+            $(this).hide();
         })
     </script>
 

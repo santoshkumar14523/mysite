@@ -3,7 +3,9 @@
 		$title = $_POST['title']; // Title of the post
 		$link = $_POST['link']; // Link related to the post
 		$descrptn = str_replace("'", "''", $_POST['descrptn']);
-		$filter = $_POST['filters'];
+		$depfilter = $_POST['depfilters'];
+		$socfilter = $_POST['socfilters'];
+		$evntfilter = $_POST['evntfilters'];
 		$file = $_FILES['file'];
 		$file_name = $file['name'];
 		$file_size = $file['size'];
@@ -22,7 +24,7 @@
 					$file_new_destination = '../uploads/'.$file_new_name;
 
 					include_once "conn.php";
-					$sql = "INSERT INTO poststest5 (title, filename, descrptn, link, uploadTime, filter) VALUES ('$title', '$file_new_name', '$descrptn', '$link', '$file_time_stamp', '$filter')";
+					$sql = "INSERT INTO poststest6 (title, filename, descrptn, link, uploadTime, depFilter, socFilter, evntFilter) VALUES ('$title', '$file_new_name', '$descrptn', '$link', '$file_time_stamp', '$depfilter', '$socfilter', '$evntfilter')";
 					echo $sql;
 					if(mysqli_query($conn, $sql)){
 						echo 'your query is updated';

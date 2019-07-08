@@ -1,7 +1,19 @@
 <?php 
-	$filter = $_POST['data'];
 	include_once "conn.php";
-	$sql = "SELECT * FROM poststest5 WHERE filter = '$filter' ORDER BY uploadTime DESC ";
+	$sql = "SELECT * FROM poststest6 WHERE id IS NOT NULL ";
+	if(isset($_POST['depFilterArray'])){
+		$depFilter = implode("','", $_POST['depFilterArray']);
+		$sql .= "AND depFilter IN ('".$depFilter."') ";
+	}
+	if(isset($_POST['socFilterArray'])){
+		$socFilter = implode("','", $_POST['socFilterArray']);
+		$sql = $sql."AND socFilter IN ('".$socFilter."') ";
+	}
+	if(isset($_POST['evntFilterArray'])){
+		$evntFilter = implode("','", $_POST['evntFilterArray']);
+		$sql = $sql."AND evntFilter IN ('".$evntFilter."') ";
+	}
+	$sql .= "ORDER BY uploadTime DESC";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) > 0){
 	    while($row = mysqli_fetch_assoc($result)) {

@@ -1,6 +1,6 @@
 <?php 
 	include_once "conn.php";
-	$sql = "SELECT * FROM poststest5 ORDER BY uploadTime DESC ";
+	$sql = "SELECT * FROM poststest6 ORDER BY uploadTime DESC ";
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) > 0){
 	    while($row = mysqli_fetch_assoc($result)) {

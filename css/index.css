@@ -121,3 +121,6 @@ html, body{
 	margin-right: 10px;
 	float: left;
 }
+.clear-filters-ul{
+	display: none;
+}
