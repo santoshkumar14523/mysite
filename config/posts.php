@@ -1,19 +1,39 @@
 <?php 
 	include_once "conn.php";
-	$sql = "SELECT * FROM poststest6 WHERE id IS NOT NULL ";
-	if(isset($_POST['depFilterArray'])){
+	$sql = "SELECT * FROM poststest6";
+	if(isset($_POST['depFilterArray']) && !empty($_POST['depFilterArray'])){
 		$depFilter = implode("','", $_POST['depFilterArray']);
-		$sql .= "AND depFilter IN ('".$depFilter."') ";
+		$sql .= " WHERE depFilter IN ('".$depFilter."') ";
+		if(isset($_POST['socFilterArray']) && !empty($_POST['socFilterArray'])){
+			$socFilter = implode("','", $_POST['socFilterArray']);
+			$sql = $sql."OR socFilter IN ('".$socFilter."') ";
+			if(isset($_POST['evntFilterArray']) && !empty($_POST['evntFilterArray'])){
+				$evntFilter = implode("','", $_POST['evntFilterArray']);
+				$sql = $sql."OR evntFilter IN ('".$evntFilter."')";
+			}
+		}else{
+			if(isset($_POST['evntFilterArray']) && !empty($_POST['evntFilterArray'])){
+				$evntFilter = implode("','", $_POST['evntFilterArray']);
+				$sql = $sql."OR evntFilter IN ('".$evntFilter."')";
+			}
+		}
+	}else{
+		if(isset($_POST['socFilterArray']) && !empty($_POST['socFilterArray'])){
+			$socFilter = implode("','", $_POST['socFilterArray']);
+			$sql = $sql." WHERE socFilter IN ('".$socFilter."') ";
+			if(isset($_POST['evntFilterArray']) && !empty($_POST['evntFilterArray'])){
+				$evntFilter = implode("','", $_POST['evntFilterArray']);
+				$sql = $sql."OR evntFilter IN ('".$evntFilter."')";
+			}
+		}else{
+			if(isset($_POST['evntFilterArray']) && !empty($_POST['evntFilterArray'])){
+				$evntFilter = implode("','", $_POST['evntFilterArray']);
+				$sql = $sql." WHERE evntFilter IN ('".$evntFilter."')";
+			}
+		}
 	}
-	if(isset($_POST['socFilterArray'])){
-		$socFilter = implode("','", $_POST['socFilterArray']);
-		$sql = $sql."AND socFilter IN ('".$socFilter."') ";
-	}
-	if(isset($_POST['evntFilterArray'])){
-		$evntFilter = implode("','", $_POST['evntFilterArray']);
-		$sql = $sql."AND evntFilter IN ('".$evntFilter."') ";
-	}
-	$sql .= "ORDER BY uploadTime DESC";
+	$sql .= " ORDER BY uploadTime DESC";
+
 	$result = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($result) > 0){
 	    while($row = mysqli_fetch_assoc($result)) {

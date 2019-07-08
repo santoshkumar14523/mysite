@@ -59,12 +59,14 @@
             <div class="filters-section">
                 <h4 class="mr-auto">Quick Filters</h4>
                 <hr>
-                
+                <ul class="list-group mb-3 clear-filters-ul">
+                  <li class="list-group-item list-group-item-danger">Clear All Filters</li>
+                </ul>
                 <ul class="list-group mb-3">
                     <li class="list-group-item list-group-item-success">Filters</li>
                     <li class="list-group-item dropdown-toggle" href="#depfilters" data-toggle="collapse">Department
                     </li>
-                    <ul class="collapse list-unstyled list-group" id="depfilters">
+                    <ul class="collapse list-unstyled list-group filterslist" id="depfilters">
                         <li class="list-group-item">
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="filters" value="dep1" id="defaultCheck1">
@@ -88,7 +90,7 @@
                     </ul>
                     <li class="list-group-item dropdown-toggle" href="#socfilters" data-toggle="collapse">Societies
                     </li>
-                    <ul class="collapse list-unstyled list-group" id="socfilters">
+                    <ul class="collapse list-unstyled list-group filterslist" id="socfilters">
                         <li class="list-group-item">
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="soc1" name="socfilters" id="soc1">
@@ -112,7 +114,7 @@
                     </ul>
                     <li class="list-group-item dropdown-toggle" href="#evntfilters" data-toggle="collapse">Events
                     </li>
-                    <ul class="collapse list-unstyled list-group" id="evntfilters">
+                    <ul class="collapse list-unstyled list-group filterslist" id="evntfilters">
                         <li class="list-group-item">
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="evnt1" id="evnt1">
@@ -136,7 +138,7 @@
                     </ul>
                     <li class="list-group-item dropdown-toggle" href="#uploadTimeFilters" data-toggle="collapse">Upload Time
                     </li>
-                    <ul class="collapse list-unstyled list-group" id="uploadTimeFilters">
+                    <ul class="collapse list-unstyled list-group filterslist" id="uploadTimeFilters">
                         <li class="list-group-item">
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" value="uptime1" id="uptime1">
@@ -158,9 +160,6 @@
                             </div>
                         </li>
                     </ul>
-                </ul>
-                <ul class="list-group mb-3 clear-filters-ul">
-                  <li class="list-group-item list-group-item-danger">Clear All Filters</li>
                 </ul>
                 <ul class="list-group">
                   <li class="list-group-item list-group-item-filter">Total Posts posted today<span class="badge badge-pill badge-secondary ml-2">25</span></li>
@@ -250,7 +249,6 @@
                 </select>
               </div>
               <button type="submit" name="upload" class="btn btn-primary">Upload Post</button>
-              <button class="btn btn-light">Discard Post</button>
             </form>
           </div>
         </div>
@@ -321,6 +319,10 @@
         $('.clear-filters-ul').on('click', function(){
             $('.form-check-input').prop('checked', false);
             $('.posts-section').load('config/allposts.php');
+            $('.dropdown-toggle').addClass("collapsed");
+            $('.filterslist').removeClass('show');
+            $('.filterslist').removeClass('collapse');
+            $('.filterslist').addClass('collapse');
             $(this).hide();
         })
     </script>
