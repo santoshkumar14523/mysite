@@ -1,3 +1,9 @@
+<?php 
+  session_start();
+  if(!isset($_SESSION['username'])){
+    header("Location: home.php");
+  }
+ ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -31,16 +37,24 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mr-3">
+                    <ul class="navbar-nav ml-auto mr-5">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-user-circle mr-2"></i>UserName
+                            <i class="fas fa-user-circle mr-2"></i>
+                            <?php 
+                              echo $_SESSION['username'];
+                            ?>
                             </a>
                             <div class="dropdown-menu ml-n3" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Settings</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-bell mr-2"></i>Notifications</a>
                             <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
+                                
+                                <form method="POST" action="config/logout.php">
+                                  <button type="submit" name="logout-btn" class="btn btn-primary mb-3">Log In</button>
+                                  <a class="dropdown-item" name="logout-btn" role="button"><i class="fas fa-sign-out-alt mr-2"></i>Log Out</a>
+                                </form>
+                                
                             </div>
                         </li>
                     </ul>
@@ -187,15 +201,32 @@
                 </li>
                 <div class="card" style="width: 300px;">
                   <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">
+                      <?php 
+                        echo $_SESSION['username'];
+                      ?>
+                    </h5>
+                    <p class="card-text">
+                      <?php 
+                        echo $_SESSION['descrptn'];
+                      ?>
+                    </p>
                   </div>
                 </div>
                 <hr style="width: 300px; margin-left: 0">
                 <ul class="list-group" style="width: 300px">
-                  <li class="list-group-item"><i class="fas fa-upload mr-2"></i>Posts Uploaded<span class="badge badge-pill badge-secondary ml-3">200</span></li>
+                  <li class="list-group-item"><i class="fas fa-upload mr-2"></i>Posts Uploaded<span class="badge badge-pill badge-secondary ml-3">
+                    <?php 
+                      echo $_SESSION['postUploaded'];
+                    ?>
+                  </span></li>
                   <li class="list-group-item"><i class="far fa-calendar-check mr-2"></i>UpComing Events</li>
-                  <li class="list-group-item"><i class="fas fa-link mr-2"></i>Website Link</li>
+                  <li class="list-group-item"><a href="
+                    <?php 
+                      echo $_SESSION['link'];
+                    ?>
+                    "><i class="fas fa-link mr-2"></i>Website Link</a>
+                  </li>
                 </ul>
                 <li class="list-group-item mt-3 posts-uploaded-today" style="width: 300px">Posts Uploaded Today<span class="badge badge-pill badge-secondary ml-3">2</span></li>
             </div>

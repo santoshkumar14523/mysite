@@ -72,51 +72,49 @@
 						    </ul>
 						 </div>
 						<div class="card-body">
-							<form class="login-form">
+							<form class="login-form" method="POST" action="config/login.php">
 								<div class="form-group">
 								    <label for="username">Username</label>
-								    <input type="text" class="form-control" id="login-username" placeholder="Select Username">
+								    <input type="text" class="form-control" id="login-username" name="login-username" placeholder="Select Username" required>
 								</div>
 								<div class="form-group">
 									<label for="pswd">Password</label>
-									<input type="password" class="form-control" id="login-pswd" placeholder="Password">
-									<small class="form-text text-muted">We'll keep your password safe.</small>
+									<input type="password" class="form-control" id="login-pswd" name="login-pswd" placeholder="Password" required>
 								</div>
 								<div class="form-group form-check">
 								    <input type="checkbox" class="form-check-input" id="rmbrme">
 								    <label class="form-check-label" for="rmbrme">Remember me</label>
 								 </div>
-								<button type="submit" class="btn btn-primary mb-3">Log In</button>
+								<button type="submit" name="login-btn" class="btn btn-primary mb-3">Log In</button>
 								<div class="form-group">
 									<a href="#" class="signin-link">New User! Need an account?</a>
 									<br>
 									<a href="#" class="frgt-pswd" role="button">Forgot my password?</a>
 								</div>
 							</form> 	
-							<form class="signin-form">
+							<form class="signin-form" method="POST" action="config/signin.php">
 								<div class="form-group">
 								    <label for="username">Username</label>
-								    <input type="text" class="form-control" id="signin-username" placeholder="Select Username">
+								    <input type="text" class="form-control" name="username" id="signin-username" placeholder="Select Username" required>
 								</div>
 								<div class="form-group">
 									<label for="email">Email address</label>
-									<input type="email" class="form-control" id="signin-email" placeholder="Enter email">
+									<input type="email" class="form-control" name="email" id="signin-email" placeholder="Enter email" required>
 									<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 								<div class="form-group">
 									<label for="pswd">Password</label>
-									<input type="password" class="form-control" id="signin-pswd" placeholder="Password">
-									<small class="form-text text-muted">We'll keep your password safe.</small>
+									<input type="password" name="pswd" class="form-control" id="signin-pswd" placeholder="Password" required>
 								</div>
 								<div class="form-group">
 								    <label for="descrptn">Description about your self.</label>
-								    <textarea class="form-control" id="descrptn" rows="2"></textarea>
+								    <textarea class="form-control" name="descrptn" id="descrptn" rows="2"></textarea>
 								  </div>
 								<div class="form-group">
 									<label for="link">Link of your site / Github page.</label>
-									<input type="text" class="form-control" id="link" placeholder="">
+									<input type="text" class="form-control" name="link" id="link" placeholder="https://yoursite.com/">
 								</div>
-								<button type="submit" class="btn btn-primary mb-3 mt-1">Create Account</button>
+								<button type="submit" name="signin-btn" class="btn btn-primary mb-3 mt-1">Create Account</button>
 								<div class="form-group">
 									<a href="#" class="login-link">Already have account!</a>
 									<br>

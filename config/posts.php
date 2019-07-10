@@ -44,7 +44,7 @@
 	            <img src='uploads/".$row['filename']."' class='card-img-top'>
 	            <div class='card-body'>
 	                <p class='card-text'>".$row['descrptn']."</p>
-	                <a href= class='card-link'>".$row['link']."</a>
+	                <a href='".$row['link']."' class='card-link' target='_blank'>".$row['link']."</a>
 	            </div>
 	            <div class='card-footer text-muted'>
 	                ".get_time_ago($row['uploadTime'])."

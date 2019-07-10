@@ -1,8 +1,9 @@
 <?php 
 	if(isset($_POST['upload'])){
+		include_once 'conn.php';
 		$title = $_POST['title']; // Title of the post
 		$link = $_POST['link']; // Link related to the post
-		$descrptn = str_replace("'", "''", $_POST['descrptn']);
+		$descrptn = mysqli_real_escape_string($conn, $_POST['descrptn']);
 		$depfilter = $_POST['depfilters'];
 		$socfilter = $_POST['socfilters'];
 		$evntfilter = $_POST['evntfilters'];
