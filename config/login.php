@@ -25,7 +25,10 @@
 						$_SESSION['descrptn'] = $row['descrptn'];
 						$_SESSION['link'] = $row['link'];
 						$_SESSION['postUploaded'] = $row['postUploaded'];
-						echo $_SESSION['postUploaded'];
+						if(isset($_POST['rmbrme'])){
+							setcookie('email', $row['username'], time()+3600*24*30, '/');
+							setcookie('pswd', $row['pswd'], time()+3600*24*30, '/');
+						}
 						header("Location: ../index.php");
 						exit();
 					}

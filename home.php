@@ -1,3 +1,22 @@
+<?php 
+	if(isset($_COOKIE['email']) && isset($_COOKIE['pswd'])){
+		$userName = $_COOKIE['email'];
+		$pswd = $_COOKIE['pswd'];
+		include_once 'config/conn.php';
+		$sql = "SELECT * FROM users WHERE username='$userName' AND pswd = '$pswd'";
+		$result = mysqli_query($conn, $sql);
+		if(mysqli_num_rows($result) > 0){
+			session_start();
+			$row = mysqli_fetch_assoc($result);
+			$_SESSION['username'] = $row['username'];
+			$_SESSION['email'] = $row['email'];
+			$_SESSION['descrptn'] = $row['descrptn'];
+			$_SESSION['link'] = $row['link'];
+			$_SESSION['postUploaded'] = $row['postUploaded'];
+			header("Location: index.php");
+		} 
+	}
+ ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -82,7 +101,7 @@
 									<input type="password" class="form-control" id="login-pswd" name="login-pswd" placeholder="Password" required>
 								</div>
 								<div class="form-group form-check">
-								    <input type="checkbox" class="form-check-input" id="rmbrme">
+								    <input type="checkbox" name='rmbrme' class="form-check-input" id="rmbrme">
 								    <label class="form-check-label" for="rmbrme">Remember me</label>
 								 </div>
 								<button type="submit" name="login-btn" class="btn btn-primary mb-3">Log In</button>
